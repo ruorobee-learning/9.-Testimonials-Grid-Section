@@ -1,3 +1,4 @@
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +6,18 @@
     -webkit-font-smoothing: antialiased;
 }
 
+/* Define CSS Variables */
+:root {
+    --color-white: #FFF;
+    --color-purple: #733FC8;
+    --color-grey: #48556A;
+    --color-navy: #19202D;
+    --color-light-grey: #676D7E;
+    --color-light-text: #E7EAEE;
+    --color-highlight: #A775F1;
+}
+
+/* Body Styles */
 body {
     font-family: 'Barlow Semi Condensed', sans-serif;
     background-color: #F6F5F6;
@@ -16,97 +29,46 @@ body {
     min-height: 100vh;
 }
 
+/* Testimonials Grid */
 .testimonials {
     display: grid;
     max-width: 70rem;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-    grid-template-rows: repeat(2, auto);  /* 2 rows */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
     gap: 2rem;
     grid-template-areas: 
         "purple purple grey white-long"
         "white-short navy navy white-long";
 }
 
-/* Assigning grid areas */
-.purple {
-    grid-area: purple;
-    background-color: #733FC8;
-}
+/* Assigning Grid Areas */
+.purple { grid-area: purple; background-color: var(--color-purple); }
+.grey { grid-area: grey; background-color: var(--color-grey); }
+.white-short { grid-area: white-short; background-color: var(--color-white); }
+.navy { grid-area: navy; background-color: var(--color-navy); }
+.white-long { grid-area: white-long; background-color: var(--color-white); }
 
-.grey {
-    grid-area: grey;
-    background-color: #48556A;
-}
-
-.white-short {
-    grid-area: white-short;
-}
-
-.navy {
-    grid-area: navy;
-    background-color: #19202D;
-}
-
-.white-long {
-    grid-area: white-long;
-}
-
-@media (max-width: 647px) {
-    .testimonials {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns */
-        grid-template-rows: auto; /* Adjust rows dynamically */
-        padding: 1rem;
-        grid-template-areas: 
-            "purple purple"
-            "grey white-short"
-            "navy navy"
-            "white-long white-long";
-    }
-}
-
-@media (max-width: 480px) {
-    .testimonials {
-        grid-template-columns: 1fr; /* Single column layout */
-        grid-template-rows: auto; /* Ensuring each container fits its content */
-        padding: 1.5rem;
-        grid-template-areas: 
-            "purple"
-            "grey"
-            "white-short"
-            "navy"
-            "white-long";
-        gap: 1rem;
-    }
-
-    body {
-        padding: 0;
-    }
-
-    .quotation {
-        display: none;
-    }
-}
-
+/* Testimonial Card */
 .testimonial-card {
     display: flex;
     flex-direction: column;
     padding: 2rem;
     gap: 1rem;
     border-radius: 0.5rem;
-    background: var(--color-white, #FFF);
     box-shadow: 40px 60px 50px -47px rgba(72, 85, 106, 0.25);
     position: relative;
 }
 
-.quotation{
+.quotation {
     position: absolute;
     height: 102px;
     top: 0;
     right: 60px;
     z-index: 0;
-    outline: 0px !important;
+    outline: 0 !important;
 }
 
+/* Author Container */
 .author-container {
     display: flex;
     gap: 1rem;
@@ -129,33 +91,26 @@ body {
 .author-name, .author-title {
     font-style: normal;
     font-weight: 500;
-    line-height: 110%; /* 14.3px */
+    line-height: 110%;
 }
 
-.author-name {
-    font-size: 13px;
-}
+.author-name { font-size: 13px; }
+.author-title { font-size: 11px; }
 
-.author-title {
-    font-size: 11px;
-}
+/* Text Colors for Different Cards */
+.purple, .grey, .navy { color: var(--color-white); }
 
-.purple, .grey, .navy {
-    color: white;
-}
+.purple .testimonial-container p, .purple .author-title { color: #EDE4FF; }
+.grey .author-title, .grey .testimonial-description { color: var(--color-light-text); }
+.navy .testimonial-description { color: var(--color-light-text); }
 
-.purple {
-    background-color: #733FC8;
-}
+.white-short .testimonial-container h1, .white-long .testimonial-container h1,
+.white-short .author-name, .white-long .author-name { color: var(--color-grey); }
 
-.grey {
-    background-color: #48556A;
-}
+.white-short .author-title, .white-long .author-title,
+.white-short .testimonial-container p, .white-long .testimonial-container p { color: var(--color-light-grey); }
 
-.navy {
-    background-color: #19202D;
-}
-
+/* Testimonial Container */
 .testimonial-container {
     display: flex;
     flex-direction: column;
@@ -168,7 +123,6 @@ body {
     font-weight: 600;
     font-size: 1.25rem;
     line-height: 120%;
-    color: white;
 }
 
 .testimonial-container p {
@@ -178,59 +132,38 @@ body {
     line-height: 140%;
 }
 
-.white-short .testimonial-container h1{
-    color:#48556A;
+/* Image Outlines */
+.purple img { outline: 2px solid var(--color-highlight); }
+.navy img { outline: 2px solid var(--color-purple); }
+
+/* Responsive Design */
+@media (max-width: 647px) {
+    .testimonials {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        padding: 1rem;
+        grid-template-areas: 
+            "purple purple"
+            "grey white-short"
+            "navy navy"
+            "white-long white-long";
+    }
 }
 
-.white-short .author-name {
-    color: #48556A;
-}
+@media (max-width: 480px) {
+    .testimonials {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        padding: 1.5rem;
+        grid-template-areas: 
+            "purple"
+            "grey"
+            "white-short"
+            "navy"
+            "white-long";
+        gap: 1rem;
+    }
 
-.white-long .author-name {
-    color: #48556A;
-}
-
-.white-short .author-title {
-    color: #676D7E;
-}
-
-.white-long .author-title {
-    color: #676D7E;
-}
-
-.white-long .testimonial-container h1{
-    color:#48556A;
-}
-
-.grey .author-title{
-    color: #E7EAEE;
-}
-
-.grey .testimonial-description {
-    color: #e7eaee;
-}
-
-.navy .testimonial-description {
-    color: #e7eaee;
-}
-
-.white-short .testimonial-container p{
-    color:#676D7E;
-}
-
-.white-long .testimonial-container p{
-    color:#676D7E;
-}
-.purple .testimonial-container p {
-    color:#EDE4FF;
-}
-.purple .author-title {
-    color:#EDE4FF;
-}
-.purple img {
-    outline: 2px solid #A775F1;
-}
-
-.navy img {
-    outline: 2px solid #733FC8;
+    body { padding: 0; }
+    .quotation { display: none; }
 }
