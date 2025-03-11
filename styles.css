@@ -163,7 +163,7 @@ body {
     z-index: 2;
 }
 
-.testimonial-container h2 {
+.testimonial-container h1 {
     font-style: normal;
     font-weight: 600;
     font-size: 1.25rem;
@@ -178,7 +178,7 @@ body {
     line-height: 140%;
 }
 
-.white-short .testimonial-container h2{
+.white-short .testimonial-container h1{
     color:#48556A;
 }
 
@@ -198,7 +198,7 @@ body {
     color: #676D7E;
 }
 
-.white-long .testimonial-container h2{
+.white-long .testimonial-container h1{
     color:#48556A;
 }
 
